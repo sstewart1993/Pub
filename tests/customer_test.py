@@ -7,11 +7,11 @@ from src.pub import Pub
 class TestCustomer(unittest.TestCase):
     
     def setUp(self):
-        self.customer = Customer("John", 24.60, 6, 30)
+        self.customer = Customer("John", 24.60, 12, 30)
         self.drink = Drink("Beer", 2.50, 3)
         self.pub = Pub("The Prancing Pony", 100.00, "whiskey")
 
-    def test_pub_has_name(self):
+    def test_name(self):
         name = self.customer.name
         self.assertEqual("John", name)
 
@@ -19,6 +19,8 @@ class TestCustomer(unittest.TestCase):
         wallet = self.customer.wallet
         self.assertEqual(24.60, wallet)
 
+    def test_age(self):
+        self.assertEqual(30, self.customer.age)
         
     def test_buy_drink(self):
         wallet = self.customer.wallet
@@ -28,6 +30,19 @@ class TestCustomer(unittest.TestCase):
         self.pub.increase_till(till, price)
         self.assertEqual(22.10, self.customer.wallet)
         self.assertEqual(102.50, self.pub.till)
+
+    def test_drunkness(self):
+        self.assertEqual(12, self.customer.drunkness)
+
+    def test_buy_drinks(self):
+        if self.pub.refusal(self.customer.drunkness):
+            self.customer.buy_drinks(self.drink.alcohol_level)
+            self.assertEqual(15, self.customer.drunkness)
+
+    
+
+
+    
         
 
 

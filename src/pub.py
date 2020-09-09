@@ -7,3 +7,15 @@ class Pub:
 
     def increase_till(self, till, price):
         self.till = till + price
+
+    def age_check(self, customer):
+        if customer.age < 18:
+            print("service refused")
+        else:
+            print("Here you go")
+
+    def refusal(self, drunk):
+        if drunk >= 10:
+            print("Go home!")
+            return False
+        
