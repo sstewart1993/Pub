@@ -11,5 +11,9 @@ class Customer:
 
     def buy_drinks(self, alchol_level):
         self.drunkness += alchol_level
-        # if self.drunkness > 8:
-        #     return self.pub.refusal
+       
+    def buy_food(self, rej):
+        if (self.drunkness - rej) < 0:
+            self.drunkness = 0
+        else:
+            self.drunkness -= rej
